@@ -288,6 +288,30 @@ public class RCTMqtt implements MqttCallback{
 	    e.printStackTrace();
 	  }
 	}
+  public void unsubscribe(final String topic) {
+	  try {
+	    IMqttToken subToken = client.unsubscribe(topic);
+	    subToken.setActionCallback(new IMqttActionListener() {
+	        @Override
+	        public void onSuccess(IMqttToken asyncActionToken) {
+	            // The message was published
+	          log("unSubscribe success");
+	        }
+
+	        @Override
+	        public void onFailure(IMqttToken asyncActionToken,
+	                              Throwable exception) {
+	            // The subscription could not be performed, maybe the user was not
+	            // authorized to subscribe on the specified topic e.g. using wildcards
+
+	          log("unSubscribe failed");
+	        }
+	    });
+	  } catch (MqttException e) {
+	    log("Cann't unsubscribe");
+	    e.printStackTrace();
+	  }
+	}
 
 
 	public void publish(final String topic, final String payload, final int qos, final boolean retain) {
