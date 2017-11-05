@@ -164,14 +164,35 @@
 }
 
 - (void) subscribe:(NSString *)topic qos:(NSNumber *)qos {
+
+    NSDictionary<NSString *, NSNumber *> *oldSubs=[self.manager subscriptions];
+    NSMutableDictionary<NSString *, NSNumber *>  *newSubscriptions=[NSMutableDictionary dictionaryWithObject:qos forKey:topic];
     
-    [self.manager setSubscriptions:[NSDictionary dictionaryWithObject:qos forKey:topic]];
+    for (NSString *topicFilter in oldSubs) {
+        if (![newSubscriptions objectForKey:topicFilter]) {
+            [newSubscriptions setObject:oldSubs[topicFilter] forKey:topicFilter];
+            
+        }
+    }
+    [self.manager setSubscriptions:newSubscriptions];
+    //[self.manager setSubscriptions:[NSDictionary dictionaryWithObject:qos forKey:topic]];
+}
+
+- (void) unsubscribe:(NSString *)topic {
+    NSDictionary<NSString *, NSNumber *> *oldSubs=[self.manager subscriptions];
+    NSMutableDictionary<NSString *, NSNumber *>  *newSubscriptions=[[NSMutableDictionary alloc] init];
+    for (NSString *topicFilter in oldSubs) {
+        if (![topic isEqualToString:topicFilter]) {
+            [newSubscriptions setObject:oldSubs[topicFilter] forKey:topicFilter];
+        }
+    }
+    [self.manager setSubscriptions:newSubscriptions];
 }
 
 - (void) publish:(NSString *) topic data:(NSData *)data qos:(NSNumber *)qos retain:(BOOL) retain {
     [self.manager sendData:data
                      topic:topic
-                       qos:[qos intValue]
+                       qos:(MQTTQosLevel)qos
                     retain:retain];
     //[data dataUsingEncoding:NSUTF8StringEncoding]
 }
