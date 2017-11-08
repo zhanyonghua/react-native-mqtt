@@ -81,6 +81,7 @@ public class RCTMqtt implements MqttCallback{
 		defaultOptions.putString("willtopic", "");
 		defaultOptions.putInt("willQos", 0);
 		defaultOptions.putBoolean("willRetainFlag", false);
+		defaultOptions.putBoolean("automaticReconnect", false);
 
 		createClient(_options);
 	}
@@ -122,6 +123,8 @@ public class RCTMqtt implements MqttCallback{
 			defaultOptions.putInt("willQos",_options.getInt("willQos"));
 		if(_options.hasKey("willRetainFlag"))
 			defaultOptions.putBoolean("willRetainFlag", _options.getBoolean("willRetainFlag"));
+		if(_options.hasKey("automaticReconnect"))
+			defaultOptions.putBoolean("automaticReconnect", _options.getBoolean("automaticReconnect"));
 
 		ReadableMap options = (ReadableMap) defaultOptions;
 
@@ -181,6 +184,11 @@ public class RCTMqtt implements MqttCallback{
     if(options.getBoolean("will")) {
 
     }
+
+    //xpk add auto
+		if (options.getBoolean("automaticReconnect")) {
+			mqttoptions.setAutomaticReconnect(true);
+		}
 
     memPer = new MemoryPersistence();
 
