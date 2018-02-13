@@ -107,7 +107,7 @@ RCT_EXPORT_METHOD(disconnect:(nonnull NSNumber *) clientRef) {
 }
 
 RCT_EXPORT_METHOD(subscribe:(nonnull NSNumber *) clientRef topic:(NSString *)topic qos:(nonnull NSNumber *)qos) {
-    [[[self clients] objectForKey:clientRef] subscribe:topic qos:qos]];
+    [[[self clients] objectForKey:clientRef] subscribe:topic qos:qos];
     
 }
 
