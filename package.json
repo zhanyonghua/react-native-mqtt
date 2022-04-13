@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuanpmt/react-native-mqtt.git"
+    "url": "git+https://github.com/zhanyonghua/react-native-mqtt.git"
   },
   "keywords": [
     "mqtt",
