@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "react-native": "0.67.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhanyonghua/react-native-mqtt.git"
