@@ -126,7 +126,11 @@ RCT_EXPORT_METHOD(unsubscribe:(nonnull NSNumber *) clientRef topic:(NSString *)t
 - (void)dealloc
 {
     
-    
+}
+
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
 }
 
 @end
