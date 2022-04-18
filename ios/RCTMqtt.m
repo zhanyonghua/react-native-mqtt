@@ -128,10 +128,10 @@ RCT_EXPORT_METHOD(unsubscribe:(nonnull NSNumber *) clientRef topic:(NSString *)t
     
 }
 
-+ (BOOL)requiresMainQueueSetup
+/*+ (BOOL)requiresMainQueueSetup
 {
     return YES;
-}
+}*/
 
 @end
 
