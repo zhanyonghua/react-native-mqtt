@@ -28,6 +28,6 @@ Pod::Spec.new do |s|
     #    }
     
     s.dependency 'MQTTClient','~> 0.6.9'
-    s.dependency 'MQTTClient/Websocket','~> 0.6.9'
+    #s.dependency 'MQTTClient/Websocket','~> 0.6.9'
     s.dependency 'React'
 end
